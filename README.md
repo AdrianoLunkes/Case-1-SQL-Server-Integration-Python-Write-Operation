@@ -6,7 +6,7 @@ First, we need to set up the database environment. Run the following commands in
 
 SQL
 
--- Create the database
+'''-- Create the database
 CREATE DATABASE PythonSQL;
 USE PythonSQL;
 
@@ -18,16 +18,17 @@ CREATE TABLE Sales(
     product VARCHAR(100),
     price DECIMAL(10, 2),
     quantity INT
-);
+);'''
 ✅ Status: Database and table successfully created.
 
 Initial Test Record
 Let’s add a first test record directly via SQL to ensure the table works:
 
 SQL
-
+'''
 INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
-VALUES (1, '2022-04-22', 'Ana', 'Phone', 2000, 1);
+VALUES (1, '2022-04-22', 'Ana', 'Phone', 2000, 1);'''
+
 3. Initial Configurations in Jupyter
 In Jupyter Notebook, create a new Python 3 file.
 
@@ -36,15 +37,16 @@ Install the integration library:
 
 Bash
 
-!pip install pyodbc
+'''!pip install pyodbc'''
+
 🔗 Setting up the connection
 The following script establishes the link between the Python environment and the database:
 
 Python
 
-import pyodbc
+'''import pyodbc'''
 
-connection_data = (
+'''connection_data = (
     "Driver={SQL Server};"
     "Server=LAPTOP-SRP0M4NC;"  # Replace with your server name
     "Database=PythonSQL;"
@@ -52,6 +54,8 @@ connection_data = (
 
 connection = pyodbc.connect(connection_data)
 print("Connection successful!")
+'''
+
 Note:
 
 Driver: Defines the SQL Server connector.
@@ -65,7 +69,7 @@ Now we can insert SQL commands directly from Python to write data into the table
 
 Basic Insertion
 Python
-
+'''
 cursor = connection.cursor()
 
 command = """INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
@@ -73,39 +77,47 @@ VALUES (1, '2022-04-22', 'Ana', 'Phone', 2000, 1)"""
 
 cursor.execute(command)
 cursor.commit()
+'''
 🧾 Bulk Insertion Examples
 Here are four additional examples of inserting data manually via script:
 
 Python
 
 # Example 1
+'''
 command = """INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
 VALUES (2, '2022-07-01', 'Pedro', 'Laptop', 6000, 1)"""
 cursor.execute(command)
 cursor.commit()
-
+'''
 # Example 2
+'''
 command = """INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
 VALUES (3, '2022-09-10', 'Mariana', 'Headphones', 350, 2)"""
 cursor.execute(command)
 cursor.commit()
+'''
 
 # Example 3
+'''
 command = """INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
 VALUES (4, '2022-11-25', 'Lucas', 'Smart TV', 3200, 1)"""
 cursor.execute(command)
 cursor.commit()
+'''
 
 # Example 4
+'''
 command = """INSERT INTO Sales (sale_id, sale_date, customer, product, price, quantity)
 VALUES (5, '2023-01-12', 'Julia', 'Digital Camera', 1800, 1)"""
 cursor.execute(command)
 cursor.commit()
+'''
 5. Making Data Registration Automatic with Variables
 To make the process dynamic, we use f-strings to inject Python variables directly into the SQL command:
 
 Python
-
+'''
 cursor = connection.cursor()
 
 # Define variables
@@ -124,6 +136,7 @@ cursor.execute(command)
 cursor.commit()
 
 print("Data successfully inserted!")
+'''
 Conclusion
 The Python and SQL Server Integration Project (Write Operation) demonstrates in practice how to:
 
